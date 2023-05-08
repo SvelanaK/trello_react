@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   AppBar,
   Box,
@@ -20,7 +22,7 @@ import {
   SearchIconWrapper,
   StyledInputBase,
   LogoWrapper,
-} from "./themeHeader";
+} from "./ThemeHeader";
 
 export default function Header() {
   return (
