@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import {
   AppBar,
   Box,
@@ -10,12 +8,13 @@ import {
   Avatar,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import SearchIcon from "@mui/icons-material/Search";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import NotificationsNoneSharpIcon from "@mui/icons-material/NotificationsNoneSharp";
-import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import {
+  Search as SearchIcon,
+  AddCircleOutlineOutlined,
+  NotificationsNoneSharp,
+  ErrorOutlineRounded,
+} from "@mui/icons-material";
 
-import { Logo, Boards } from "../UI/Icons";
 import {
   theme,
   Search,
@@ -30,8 +29,8 @@ export default function Header() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ boxShadow: "none" }}>
           <Toolbar>
-            <LogoWrapper onClick={() => console.log("logo click")}>
-              <Logo />
+            <LogoWrapper>
+              <img src="/images/icons/logo.svg" alt="logo" />
             </LogoWrapper>
             <Divider
               sx={{ mx: 2, display: { xs: "none", sm: "block" } }}
@@ -39,13 +38,12 @@ export default function Header() {
               variant="middle"
               flexItem
             />
-            <Boards />
+            <img src="/images/icons/boards.svg" alt="boards" />
             <Typography
               className="header-link"
               sx={{ ml: 1, display: { xs: "none", md: "block" } }}
               variant="h6"
               component="h2"
-              onClick={() => console.log("Boards click")}
             >
               Boards
             </Typography>
@@ -85,24 +83,14 @@ export default function Header() {
                 aria-label="show 4 new mails"
                 color="inherit"
                 sx={{ height: 48 }}
-                onClick={() => console.log("icon click")}
               >
-                <AddCircleOutlineOutlinedIcon />
+                <AddCircleOutlineOutlined />
               </IconButton>
-              <IconButton
-                color="inherit"
-                size="large"
-                onClick={() => console.log("icon click")}
-              >
-                <ErrorOutlineRoundedIcon />
+              <IconButton color="inherit" size="large">
+                <ErrorOutlineRounded />
               </IconButton>
-              <IconButton
-                color="inherit"
-                size="large"
-                sx={{ height: 48 }}
-                onClick={() => console.log("icon click")}
-              >
-                <NotificationsNoneSharpIcon />
+              <IconButton color="inherit" size="large" sx={{ height: 48 }}>
+                <NotificationsNoneSharp />
               </IconButton>
               <IconButton
                 size="large"
@@ -111,9 +99,8 @@ export default function Header() {
                 aria-haspopup="true"
                 color="inherit"
                 sx={{ height: 48, width: 48 }}
-                onClick={() => console.log("avatar click")}
               >
-                <Avatar alt="User" src="/images/1.jpg" />
+                <Avatar alt="User" src="/images/avatar.jpg" />
               </IconButton>
             </Box>
           </Toolbar>

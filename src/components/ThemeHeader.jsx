@@ -1,6 +1,9 @@
 import { InputBase } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { styled, alpha } from "@mui/material/styles";
+import {
+  createTheme,
+  styled,
+  alpha,
+} from "@mui/material/styles";
 
 export let theme = createTheme({
   palette: {

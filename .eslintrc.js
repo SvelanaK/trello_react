@@ -1,24 +1,27 @@
-// eslint-disable-next-line no-undef
 module.exports = {
-  "env": {
-      "browser": true,
-      "es2021": true
+  env: {
+    browser: true,
+    es2021: true,
   },
-  "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended"
+  extends: [
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
   ],
-  "overrides": [
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-      "ecmaVersion": "latest"
+  overrides: [],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json"],
   },
-  "plugins": [
-      "react",
-      "@typescript-eslint"
-  ],
-  "rules": {
-  }
-}
+  plugins: ["react"],
+  rules: {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    semi: ["error", "always"],
+    "@typescript-eslint/semi": "off",
+    "space-before-function-paren": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+  },
+};
