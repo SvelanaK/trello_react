@@ -1,22 +1,18 @@
-import { InputBase } from '@mui/material';
-import {
-  createTheme,
-  styled,
-  alpha,
-} from "@mui/material/styles";
+import { InputBase } from "@mui/material";
+import { createTheme, styled, alpha } from "@mui/material/styles";
 
 export let theme = createTheme({
   palette: {
     primary: {
-      main: '#fff',
+      main: "#fff",
     },
     secondary: {
-      main: '#F4F4F4',
-      dark: '#CCCCCC'
+      main: "#F4F4F4",
+      dark: "#CCCCCC",
     },
   },
   shape: {
-    borderRadius: 30
+    borderRadius: 30,
   },
 });
 
@@ -70,5 +66,5 @@ export const LogoWrapper = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     display: "block",
   },
-  cursor: 'pointer',
+  cursor: "pointer",
 }));
