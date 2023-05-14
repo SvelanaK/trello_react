@@ -1,21 +1,14 @@
-import PropTypes from "prop-types";
-
 import { IconButton, TextField, Button } from "@mui/material";
 import { Close } from "@mui/icons-material";
+
+import { IEditForm } from "../../IProjectTypes";
 
 export default function EditInputForm({
   inputValue,
   setValue,
   saveName,
   toggleEditInput,
-}) {
-  EditInputForm.propTypes = {
-    setValue: PropTypes.func.isRequired,
-    saveName: PropTypes.func.isRequired,
-    toggleEditInput: PropTypes.func.isRequired,
-    inputValue: PropTypes.string.isRequired,
-  };
-
+}: IEditForm) {
   return (
     <div className="edit-input">
       <TextField

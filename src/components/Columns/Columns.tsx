@@ -5,6 +5,7 @@ import { Stack } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
 import { theme } from "./ThemeColumns";
+import { Istate, Icolumn } from '../../IProjectTypes';
 import { setColumns } from "../../state/trelloActions";
 
 import ColumnItem from "./ColumnItem";
@@ -14,13 +15,13 @@ function Columns() {
   const dispatch = useDispatch();
   const [inputValue, setValue] = useState("");
   const [openInput, setOpenInput] = useState(false);
-  const columnsArr = useSelector((state) => state.columnsArr);
+  const columnsArr = useSelector((state: Istate) => state.columnsArr);
 
   const updateState = () => {
     const localArr = JSON.parse(localStorage.getItem("columnsArr"));
     if (localArr) {
       dispatch(setColumns());
-      localArr.forEach((item) => {
+      localArr.forEach((item: Icolumn) => {
         dispatch(setColumns(item));
       });
     }

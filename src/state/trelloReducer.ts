@@ -1,17 +1,9 @@
 import actionTypes from './actionTypes';
-
-type Icolumn = {
-  name: string,
-  id: number,
-}
+import { Icolumn, Istate } from '../IProjectTypes';
 
 type Iaction = {
   type?: string,
   payload?: Icolumn,
-}
-
-type Istate = {
-  columnsArr: Icolumn[],
 }
 
 const initialState: Istate = {

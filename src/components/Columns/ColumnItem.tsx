@@ -1,30 +1,26 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useState, SyntheticEvent } from "react";
 import { useSelector } from "react-redux";
 
 import { MoreHoriz } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 
+import { Istate, IColumnItem } from "../../IProjectTypes";
 import { Item } from "./ThemeColumns";
+
 import EditInputForm from "./EditInputForm";
 
-export default function ColumnItem({ item, updateState }) {
-  ColumnItem.propTypes = {
-    item: PropTypes.object.isRequired,
-    updateState: PropTypes.func.isRequired,
-  };
-
-  let columnsArr = useSelector((state) => state.columnsArr);
+function ColumnItem({ item, updateState }: IColumnItem) {
+  let columnsArr = useSelector((state: Istate) => state.columnsArr);
   const [openEditInput, setEditInput] = useState(false);
   const [inputValue, setValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const openMenu = (event) => {
+  const openMenu = (event: SyntheticEvent) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const closeMenu = (event) => {
+  const closeMenu = (event: SyntheticEvent) => {
     event.stopPropagation();
     setAnchorEl(null);
   };
@@ -37,14 +33,16 @@ export default function ColumnItem({ item, updateState }) {
 
   const saveEditName = () => {
     if (inputValue) {
-      const finedColumn = columnsArr.find((element) => element.name === item.name);
+      const finedColumn = columnsArr.find(
+        (element) => element.name === item.name
+      );
       finedColumn.name = inputValue;
       localStorage.setItem("columnsArr", JSON.stringify(columnsArr));
       setEditInput(false);
     }
   };
 
-  const deleteColumn = (event) => {
+  const deleteColumn = (event: SyntheticEvent) => {
     columnsArr = columnsArr.filter((element) => element.name !== item.name);
     localStorage.setItem("columnsArr", JSON.stringify(columnsArr));
     closeMenu(event);
@@ -85,3 +83,5 @@ export default function ColumnItem({ item, updateState }) {
     </Item>
   );
 }
+
+export default ColumnItem;
