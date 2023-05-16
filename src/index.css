@@ -28,14 +28,23 @@ body {
   overflow-x: auto;
 }
 
-
-.header-column {
+.header-column, #card {
   background-color: var(--main-grey);
   border-radius: 10px;
-  padding: 15px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  box-shadow: none;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+}
+
+#card {
+  width: 350px;
+  flex-direction: column;
+}
+
+#card div, #card button {
+  padding: 0;
 }
 
 .add-card-btn,
@@ -60,4 +69,9 @@ body {
 .edit-input {
   position: relative;
   top: -7px;
+}
+
+#chip {
+  width: 90px;
+  background-color: rgb(185, 127, 255);
 }
