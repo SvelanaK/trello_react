@@ -68,7 +68,7 @@ function Columns() {
           <Stack key={item.id}>
             <ColumnItem item={item} updateState={updateState} />
             {item.cardsArr?.map((card) => (
-              <CardItem cardForm={card.cardForm} key={card.cardId}/>
+              <CardItem updateState={updateState} cardForm={card.cardForm} cardId={card.cardId} columnId={card.columnId} key={card.cardId}/>
             ))}
             <button className="add-card-btn" onClick={(event) => selectColumn(item)}>
               + Add new card

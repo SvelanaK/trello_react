@@ -1,13 +1,13 @@
 :root {
   --white: rgb(255, 255, 255);
-  --main-grey: #F4F4F4;
+  --main-grey: #f4f4f4;
   --secondary-grey: #ccc;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,7 +28,9 @@ body {
   overflow-x: auto;
 }
 
-.header-column, #card {
+.header-column,
+#card,
+#warning-card {
   background-color: var(--main-grey);
   border-radius: 10px;
   padding: 15px 25px;
@@ -38,13 +40,21 @@ body {
   justify-content: space-between;
 }
 
-#card {
+#card,
+#warning-card {
   width: 350px;
   flex-direction: column;
 }
 
-#card div, #card button {
+#card div,
+#card button,
+#warning-card div,
+#warning-card button {
   padding: 0;
+}
+
+#warning-card {
+  outline: 1px solid red;
 }
 
 .add-card-btn,
@@ -74,4 +84,25 @@ body {
 #chip {
   width: 90px;
   background-color: rgb(185, 127, 255);
+}
+
+.over-timer,
+.timer {
+  font-size: 15px;
+}
+
+.over-timer {
+  color: red;
+}
+
+.timer-box {
+  display: flex;
+}
+
+.timer-box div {
+  align-items: end;
+}
+
+.timer-box label {
+  left: 33px;  
 }

@@ -6,19 +6,21 @@ export type Icolumn = {
   id: number,
 }
 
+export interface CardProps extends CardArrType {
+    updateState: IFunction,
+}
 export interface CardArrType {
   cardForm: ICard,
   columnId?: number,
   cardId?: number,
 }
 export interface ICard {
-  [key: string]: string,
-  nameColumns: string,
-  nameAuthor: string,
-  performing: string,
-  runtime: string,
-  taskComplexity: string;
-};
+  nameColumns: string;
+  nameAuthor: string;
+  performing: string;
+  hours: number;
+  taskComplexity: string; 
+}
 
 export type Istate = {
   columnsArr: Icolumn[],
@@ -35,8 +37,8 @@ export interface IColumnItem {
 export interface IEditForm {
   inputValue: string,
   setValue(param: string): void,
-  saveName(): void,
-  toggleEditInput(): void,
+  saveName: IFunction,
+  toggleEditInput: IFunction,
 };
 
 export interface IModal {

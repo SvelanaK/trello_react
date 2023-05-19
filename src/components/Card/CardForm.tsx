@@ -1,6 +1,14 @@
 import { useState, FormEvent } from "react";
 
-import { Button, TextField, DialogActions, DialogContent } from "@mui/material";
+import {
+  Button,
+  TextField,
+  DialogActions,
+  DialogContent,
+  FormLabel,
+  Stack,
+  Box,
+} from "@mui/material";
 
 import { IModal, Istate, ICard } from "../../IProjectTypes";
 
@@ -12,33 +20,36 @@ export default function ModalCardContent({ toggleModal }: IModal) {
   const [invalidInputs, setInvalidInputs] = useState([]);
   const { currentColumnId, columnsArr } = useSelector((state: Istate) => state);
 
-  const inputArray = [
+  const inputsArray = [
     { name: "nameColumns", label: "Name for card" },
-    { name: "nameAuthor", label: "Author name" },
+    { name: "nameAuthor", label: "Author" },
     { name: "performing", label: "Performing" },
-    { name: "runtime", label: "Runtime" },
   ];
 
   const submitForm = (event: FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const cardForm: ICard = {
-      nameColumns: formData.get("nameColumns") as string,
-      nameAuthor: formData.get("nameAuthor") as string,
-      performing: formData.get("performing") as string,
-      runtime: formData.get("runtime") as string,
+      nameColumns: String(formData.get("nameColumns")),
+      nameAuthor: String(formData.get("nameAuthor")),
+      performing: String(formData.get("performing")),
+      hours: Number(formData.get("hours")),
       taskComplexity,
     };
 
     const keys = Object.keys(cardForm);
-    const emptyInputs: string[] = keys.filter((key) => cardForm[key] === "");
+    const emptyInputs: string[] = keys.filter((key) => {
+      if (key === "hours" && (cardForm[key] > 100 || cardForm[key] <= 0))
+        return true;
+      if (key !== "hours" && String(cardForm[key as keyof ICard]).trim() === "")
+        return true;
+    });
+
     setInvalidInputs(emptyInputs);
 
     if (!emptyInputs.length) {
       toggleModal(event);
-      const finedColumn = columnsArr.find(
-        (item) => item.id === currentColumnId
-      );
+      const finedColumn = columnsArr.find((item) => item.id === currentColumnId);
       const indexCard = finedColumn.cardsArr.length;
       const card = { cardForm, columnId: currentColumnId, cardId: indexCard };
       finedColumn.cardsArr.push(card);
@@ -49,7 +60,7 @@ export default function ModalCardContent({ toggleModal }: IModal) {
   return (
     <form onSubmit={submitForm}>
       <DialogContent>
-        {inputArray.map((item) => (
+        {inputsArray.map((item) => (
           <TextField
             error={invalidInputs.includes(item.name)}
             helperText={invalidInputs.includes(item.name) && "Empty field"}
@@ -62,13 +73,32 @@ export default function ModalCardContent({ toggleModal }: IModal) {
             fullWidth
           />
         ))}
+        <Stack direction="row" alignItems="center" sx={{ mt: 1 }}>
+          <FormLabel
+            id="demo-radio-buttons-group-label"
+            sx={{ whiteSpace: "nowrap" }}
+          >
+            Expiration date
+          </FormLabel>
+          <Box className="timer-box">
+            <TextField
+              error={invalidInputs.includes("hours")}
+              helperText={invalidInputs.includes("hours") && "Invalid field"}
+              id="outlined-number"
+              label="Hours"
+              name="hours"
+              key="hours"
+              type="number"
+            />
+          </Box>
+        </Stack>
         <CardSelect
           formError={invalidInputs.includes("taskComplexity")}
           taskComplexity={taskComplexity}
           setTaskComplexity={setTaskComplexity}
         />
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ p: 3 }}>
         <Button onClick={toggleModal}>Cancel</Button>
         <Button variant="contained" type="submit">
           Confirm
