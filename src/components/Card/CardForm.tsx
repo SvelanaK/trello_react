@@ -73,24 +73,24 @@ export default function ModalCardContent({ toggleModal }: IModal) {
             fullWidth
           />
         ))}
-        <Stack direction="row" alignItems="center" sx={{ mt: 1 }}>
+        <Stack direction="row" alignItems="center" sx={{ mt: 1, justifyContent: "space-between"}}>
+          <TextField
+            className="hours-input"
+            error={invalidInputs.includes("hours")}
+            helperText={invalidInputs.includes("hours") && "Invalid field"}
+            id="outlined-number"
+            label="Hours"
+            name="hours"
+            key="hours"
+            type="number"
+          />
           <FormLabel
             id="demo-radio-buttons-group-label"
-            sx={{ whiteSpace: "nowrap" }}
+            sx={{ whiteSpace: "nowrap", pr: 1 }}
           >
             Expiration date
           </FormLabel>
-          <Box className="timer-box">
-            <TextField
-              error={invalidInputs.includes("hours")}
-              helperText={invalidInputs.includes("hours") && "Invalid field"}
-              id="outlined-number"
-              label="Hours"
-              name="hours"
-              key="hours"
-              type="number"
-            />
-          </Box>
+
         </Stack>
         <CardSelect
           formError={invalidInputs.includes("taskComplexity")}

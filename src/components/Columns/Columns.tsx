@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { Stack } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
@@ -67,13 +68,30 @@ function Columns() {
         {columnsArr.map((item) => (
           <Stack key={item.id}>
             <ColumnItem item={item} updateState={updateState} />
-            {item.cardsArr?.map((card) => (
-              <CardItem updateState={updateState} cardForm={card.cardForm} cardId={card.cardId} columnId={card.columnId} key={card.cardId}/>
-            ))}
-            <button className="add-card-btn" onClick={(event) => selectColumn(item)}>
+            <TransitionGroup>
+              {item.cardsArr?.map((card) => (
+                <CSSTransition
+                  key={card.cardId}
+                  timeout={300}
+                  classNames="listItem"
+                >
+                  <CardItem
+                    updateState={updateState}
+                    cardForm={card.cardForm}
+                    cardId={card.cardId}
+                    columnId={card.columnId}
+                    key={card.cardId}
+                  />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+            <button
+              className="add-card-btn"
+              onClick={(event) => selectColumn(item)}
+            >
               + Add new card
             </button>
-            <ModalWindow openModal={openModal} toggleModal={toggleModal}/>
+            <ModalWindow openModal={openModal} toggleModal={toggleModal} />
           </Stack>
         ))}
         <div>

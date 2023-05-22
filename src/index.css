@@ -25,7 +25,10 @@ body {
 }
 
 .main-page {
+  height: 86vh;
   overflow-x: auto;
+  display: flex;
+  padding: 16px;
 }
 
 .header-column,
@@ -41,16 +44,24 @@ body {
 }
 
 #card,
-#warning-card {
-  width: 350px;
+#warning-card,
+.column {
+  width: 390px;
   flex-direction: column;
+  word-break: break-all;
+  box-sizing: border-box;
 }
 
 #card div,
 #card button,
-#warning-card div,
-#warning-card button {
+#warning-card button,
+#warning-card div {
   padding: 0;
+}
+
+#card > div:first-child div:last-child,
+#warning-card > div:first-child div:last-child {
+  padding-left: 40px;
 }
 
 #warning-card {
@@ -64,13 +75,10 @@ body {
   padding: 15px;
   text-align: center;
   border: 2px dashed var(--secondary-grey);
-  width: 100%;
   font-size: 24px;
+  align-items: center;
 }
 
-.column {
-  min-width: 300px;
-}
 
 .add-card-btn {
   height: 160px;
@@ -95,14 +103,6 @@ body {
   color: red;
 }
 
-.timer-box {
-  display: flex;
-}
-
-.timer-box div {
-  align-items: end;
-}
-
-.timer-box label {
-  left: 33px;  
+.hours-input {
+  width: 100%;
 }
