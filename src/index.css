@@ -1,13 +1,13 @@
 :root {
   --white: rgb(255, 255, 255);
-  --main-grey: #F4F4F4;
+  --main-grey: #f4f4f4;
   --secondary-grey: #ccc;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,17 +25,47 @@ body {
 }
 
 .main-page {
+  height: 86vh;
   overflow-x: auto;
+  display: flex;
+  padding: 16px;
 }
 
-
-.header-column {
+.header-column,
+#card,
+#warning-card {
   background-color: var(--main-grey);
   border-radius: 10px;
-  padding: 15px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  box-shadow: none;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+}
+
+#card,
+#warning-card,
+.column {
+  width: 390px;
+  flex-direction: column;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+
+#card div,
+#card button,
+#warning-card button,
+#warning-card div {
+  padding: 0;
+}
+
+#card > div:first-child div:last-child,
+#warning-card > div:first-child div:last-child {
+  padding-left: 40px;
+}
+
+#warning-card {
+  outline: 1px solid red;
 }
 
 .add-card-btn,
@@ -45,12 +75,8 @@ body {
   padding: 15px;
   text-align: center;
   border: 2px dashed var(--secondary-grey);
-  width: 100%;
   font-size: 24px;
-}
-
-.column {
-  min-width: 300px;
+  align-items: center;
 }
 
 .add-card-btn {
@@ -61,3 +87,44 @@ body {
   position: relative;
   top: -7px;
 }
+
+#chip {
+  width: 90px;
+  background-color: rgb(185, 127, 255);
+}
+
+.over-timer,
+.timer {
+  font-size: 15px;
+}
+
+.over-timer {
+  color: red;
+}
+
+.hours-input {
+  width: 100%;
+}
+
+#card-form-buttons {
+  padding: 0 23px 23px 0;
+  margin-top: 22px;
+}
+
+#card-form-buttons > button {
+  height: 35px;
+  padding: 10px;
+}
+
+.complexity-input {
+  margin-top: 15px;
+}
+
+.complexity-input > div > div {
+  height: 56px;
+}
+
+#demo-simple-select.MuiSelect-select {
+  padding-left: 14px;
+}
+

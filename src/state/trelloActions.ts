@@ -6,3 +6,10 @@ export function setColumns(payload?: unknown) {
     payload,
   };
 };
+
+export function setCurrentColumnId(payload?: unknown) {
+  return {
+    type: actionTypes.SET_CURRENT_COLUMN_ID,
+    payload,
+  };
+};

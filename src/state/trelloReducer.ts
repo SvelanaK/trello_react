@@ -8,6 +8,7 @@ type Iaction = {
 
 const initialState: Istate = {
   columnsArr: [],
+  currentColumnId: null,
 };
 
 function trelloReducer(state = initialState, action: Iaction = {}): Istate {
@@ -16,11 +17,20 @@ function trelloReducer(state = initialState, action: Iaction = {}): Istate {
       return {
         ...state,
         columnsArr: action.payload ? [...state.columnsArr, {
+          cardsArr: action.payload.cardsArr,
           name: action.payload.name,
           id: action.payload.id,
         }] : [],
       };
     }
+
+    case actionTypes.SET_CURRENT_COLUMN_ID: {
+      return {
+        ...state,
+        currentColumnId: action.payload.id,
+      };
+    }
+
     default:
       return state;
   }
