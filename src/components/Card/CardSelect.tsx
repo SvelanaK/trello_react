@@ -3,7 +3,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { ISelect } from "../../IProjectTypes";
 
-export default function CardSelect({ formError, taskComplexity, setTaskComplexity }: ISelect) {
+export default function CardSelect({ formError, taskComplexity, setTaskComplexity, defaultValue }: ISelect) {
 
   const handleChange = (event: SelectChangeEvent) => {
     setTaskComplexity(event.target.value as string);  
@@ -28,7 +28,7 @@ export default function CardSelect({ formError, taskComplexity, setTaskComplexit
   ];
 
   return (
-    <Box sx={{ mt:2 }}>
+    <Box className="complexity-input">
       <FormControl fullWidth error={formError}>
         <InputLabel id="demo-simple-select-label">Task Complexity</InputLabel>
         <Select

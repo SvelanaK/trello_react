@@ -15,6 +15,7 @@ export interface CardArrType {
   cardId?: number,
 }
 export interface ICard {
+  [key: string]: string | number;
   nameColumns: string;
   nameAuthor: string;
   performing: string;
@@ -42,11 +43,14 @@ export interface IEditForm {
 };
 
 export interface IModal {
+  card?: ICard,
   openModal?: boolean,
+  mark?: string,
   toggleModal(event: MouseEvent<HTMLButtonElement> | FormEvent): void,
 };
 
 export interface ISelect {
+  defaultValue: string,
   taskComplexity: string,
   formError: boolean,
   setTaskComplexity(param: string): void,

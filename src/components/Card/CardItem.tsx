@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -14,20 +15,26 @@ import { RemoveCircleOutline, Edit } from "@mui/icons-material";
 import { CardProps, Istate } from "../../IProjectTypes";
 
 import Timer from "../Timer";
-import { SyntheticEvent, useMemo, useState } from "react";
 
-export default function CardItem({ cardForm, cardId, columnId, updateState }: CardProps) {
+export default function CardItem({
+  cardForm,
+  cardId,
+  columnId,
+  updateState,
+}: CardProps) {
   const [timerOver, setTimerOver] = useState(false);
   const { columnsArr } = useSelector((state: Istate) => state);
-  
+
   const warningCard = useMemo(
     () => (timerOver ? "warning-card" : "card"),
     [timerOver]
   );
-  
-  const deleteCard = (event: SyntheticEvent) => {
+
+  const deleteCard = () => {
     const finedColumn = columnsArr.find((element) => element.id == columnId);
-    finedColumn.cardsArr = finedColumn.cardsArr.filter((element) => element.cardId !== cardId);    
+    finedColumn.cardsArr = finedColumn.cardsArr.filter(
+      (element) => element.cardId !== cardId
+    );
     localStorage.setItem("columnsArr", JSON.stringify(columnsArr));
     updateState();
   };
@@ -47,10 +54,12 @@ export default function CardItem({ cardForm, cardId, columnId, updateState }: Ca
           </Typography>
         </CardContent>
         <CardActions>
-          <IconButton color="info" aria-label="more" component="button">
-            <Edit />
-          </IconButton>
-          <IconButton color="info" aria-label="more" component="button"  onClick={deleteCard}>
+          <IconButton
+            color="info"
+            aria-label="more"
+            component="button"
+            onClick={deleteCard}
+          >
             <RemoveCircleOutline sx={{ ml: 2 }} />
           </IconButton>
         </CardActions>

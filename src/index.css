@@ -79,7 +79,6 @@ body {
   align-items: center;
 }
 
-
 .add-card-btn {
   height: 160px;
 }
@@ -106,3 +105,26 @@ body {
 .hours-input {
   width: 100%;
 }
+
+#card-form-buttons {
+  padding: 0 23px 23px 0;
+  margin-top: 22px;
+}
+
+#card-form-buttons > button {
+  height: 35px;
+  padding: 10px;
+}
+
+.complexity-input {
+  margin-top: 15px;
+}
+
+.complexity-input > div > div {
+  height: 56px;
+}
+
+#demo-simple-select.MuiSelect-select {
+  padding-left: 14px;
+}
+

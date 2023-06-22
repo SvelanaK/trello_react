@@ -7,7 +7,6 @@ import {
   DialogContent,
   FormLabel,
   Stack,
-  Box,
 } from "@mui/material";
 
 import { IModal, Istate, ICard } from "../../IProjectTypes";
@@ -15,11 +14,11 @@ import { IModal, Istate, ICard } from "../../IProjectTypes";
 import CardSelect from "./CardSelect";
 import { useSelector } from "react-redux";
 
-export default function ModalCardContent({ toggleModal }: IModal) {
+export default function ModalCardContent({ toggleModal, mark, card }: IModal) {
   const [taskComplexity, setTaskComplexity] = useState("");
   const [invalidInputs, setInvalidInputs] = useState([]);
   const { currentColumnId, columnsArr } = useSelector((state: Istate) => state);
-
+  const isEdit = mark === "edit-card";
   const inputsArray = [
     { name: "nameColumns", label: "Name for card" },
     { name: "nameAuthor", label: "Author" },
@@ -44,12 +43,14 @@ export default function ModalCardContent({ toggleModal }: IModal) {
       if (key !== "hours" && String(cardForm[key as keyof ICard]).trim() === "")
         return true;
     });
-
+     
     setInvalidInputs(emptyInputs);
 
     if (!emptyInputs.length) {
       toggleModal(event);
-      const finedColumn = columnsArr.find((item) => item.id === currentColumnId);
+      const finedColumn = columnsArr.find(
+        (item) => item.id === currentColumnId
+      );
       const indexCard = finedColumn.cardsArr.length;
       const card = { cardForm, columnId: currentColumnId, cardId: indexCard };
       finedColumn.cardsArr.push(card);
@@ -71,9 +72,14 @@ export default function ModalCardContent({ toggleModal }: IModal) {
             label={item.label}
             type="text"
             fullWidth
+            defaultValue={isEdit ? card[item.name] : ""}
           />
         ))}
-        <Stack direction="row" alignItems="center" sx={{ mt: 1, justifyContent: "space-between"}}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          sx={{ mt: 1, justifyContent: "space-between" }}
+        >
           <TextField
             className="hours-input"
             error={invalidInputs.includes("hours")}
@@ -83,6 +89,7 @@ export default function ModalCardContent({ toggleModal }: IModal) {
             name="hours"
             key="hours"
             type="number"
+            defaultValue={isEdit ? card.hours : ""}
           />
           <FormLabel
             id="demo-radio-buttons-group-label"
@@ -90,15 +97,15 @@ export default function ModalCardContent({ toggleModal }: IModal) {
           >
             Expiration date
           </FormLabel>
-
         </Stack>
         <CardSelect
           formError={invalidInputs.includes("taskComplexity")}
           taskComplexity={taskComplexity}
+          defaultValue={isEdit ? card.taskComplexity : ""}
           setTaskComplexity={setTaskComplexity}
         />
       </DialogContent>
-      <DialogActions sx={{ p: 3 }}>
+      <DialogActions id="card-form-buttons">
         <Button onClick={toggleModal}>Cancel</Button>
         <Button variant="contained" type="submit">
           Confirm
